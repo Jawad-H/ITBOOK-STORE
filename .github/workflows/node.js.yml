@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
-          heroku_api_key: ${{6b0a5913-e79e-45be-b63d-7feb99facd97}}
+          heroku_api_key: 6b0a5913-e79e-45be-b63d-7feb99facd97
           heroku_app_name: "itbookstoreapi1" #Must be unique in Heroku
           heroku_email: "jawwadhussain0@gmail.com"
           appdir: "server" # <- This will point to the api folder in your project
