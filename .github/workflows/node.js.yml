@@ -1,27 +1,19 @@
-name: NASA Project CI
+name: Deploy
+
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - main
+
 jobs:
   build:
-    env:
-      CI: true
-      MONGO_URL: mongodb://localhost/nasa
-    strategy:
-      matrix:
-        node-version: [18.x]
-        mongodb-version: ['4.4']
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js version ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: Use MongoDB from GitHub actions
-        uses: supercharge/mongodb-github-action@1.6.0
-        with:
-          mongodb-version: ${{ matrix.mongodb-version }}
-      - run: npm install
+          heroku_api_key: ${{6b0a5913-e79e-45be-b63d-7feb99facd97}}
+          heroku_app_name: "itbookstoreapi1" #Must be unique in Heroku
+          heroku_email: "jawwadhussain0@gmail.com"
+          appdir: "server" # <- This will point to the api folder in your project
+          procfile: "web:node server/index.js"
